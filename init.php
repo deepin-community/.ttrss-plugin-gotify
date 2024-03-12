@@ -242,7 +242,7 @@ class gotify_notifications extends Plugin {
 			$message = new Gotify\Endpoint\Message($server, $auth);
 		
 			$messageTitle = $feedName;
-			$messageBody = $title;
+			$messageBody = sprintf("%s: %s", $title, $url);
 			$messageExtras = array(
 				'client::notification' => array(
 					'click' => array('url' => $url)
