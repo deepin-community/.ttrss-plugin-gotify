@@ -197,7 +197,7 @@ class gotify_notifications extends Plugin {
 			$token = $app_tokens[$feed_id];
 		}
 
-		if (in_array($feed_id, $enabled_feeds)) {
+		if (strlen($token) > 0) {
 			if ($this->isNewArticle($article['guid_hashed']) === true) {
 				$this->sendMessage(
 					Feeds::_get_title($feed_id),
@@ -242,7 +242,7 @@ class gotify_notifications extends Plugin {
 			$message = new Gotify\Endpoint\Message($server, $auth);
 		
 			$messageTitle = $feedName;
-			$messageBody = $title;
+			$messageBody = sprintf("%s: %s", $title, $url);
 			$messageExtras = array(
 				'client::notification' => array(
 					'click' => array('url' => $url)
